@@ -6,7 +6,7 @@ export interface IPlayer {
 
 export interface IInputProps {
   selectedPlayer?: string;
-  setSelectedPlayer: (player: string) => void;
+  setSearchedPlayers: (players: IPlayer[]) => void;
   hidden: boolean;
   setHidden: (hidden: boolean) => void;
 }
