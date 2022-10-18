@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { IInputProps } from '../../types/types';
 import './Input.scss';
 
-interface Props {}
+const Input = ({
+  selectedPlayer,
+  setSelectedPlayer,
+  hidden,
+  setHidden,
+}: IInputProps) => {
+  console.log(selectedPlayer);
+  const [search, setSearch] = useState(selectedPlayer);
 
-const Input = (props: Props) => {
-  const [search, setSearch] = useState('');
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setHidden(true);
+  };
+
+  useEffect(() => {
+    setSearch(selectedPlayer);
+  }, [selectedPlayer]);
 
   return (
     <input
       type="text"
+      autoComplete="off"
       placeholder="Guess the hooper"
       value={search}
-      onChange={(e) => setSearch(e.target.value)}
+      onChange={handleInput}
     />
   );
 };
