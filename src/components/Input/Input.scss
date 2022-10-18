@@ -1,0 +1,16 @@
+input {
+  margin: 0 auto;
+  width: 50%;
+  padding: 0.8rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 500px) {
+  input {
+    width: calc(100% - 3rem);
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+}

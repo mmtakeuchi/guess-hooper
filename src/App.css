@@ -8,4 +8,13 @@
 
 main {
   height: 100%;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    padding: 1rem;
+  }
 }
