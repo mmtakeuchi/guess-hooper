@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, ChangeEvent } from 'react';
-import { fetchNames } from '../../utils';
-import { IInputProps } from '../../types/types';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { fetchNames, filterNames } from '../../utils';
+import { IInputProps } from '../../types';
 import './Input.scss';
 
 const Input = ({
@@ -16,20 +16,14 @@ const Input = ({
     setHidden(false);
   };
 
-  const searchPlayers = async (playerName: string | undefined) => {
-    const names = await fetchNames(playerName);
-    setSearchedPlayers(names);
+  const searchPlayers = (playerName: string | undefined) => {
+    const filteredPlayers = filterNames(playerName);
+    setSearchedPlayers(filteredPlayers);
   };
 
   useEffect(() => {
     searchPlayers(search);
   }, [search]);
-
-  useEffect(() => {
-    if (!search) {
-      setHidden(true);
-    }
-  }, [search, setHidden]);
 
   useEffect(() => {
     setSearch(selectedPlayer);

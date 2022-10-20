@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Input from '../Input/Input';
-import { IPlayer } from '../../types/types';
-import { fetchNames, fullName } from '../../utils';
+import { IPlayer, IPlayerData } from '../../types';
+import { fetchNames, fullName, pickPlayer } from '../../utils';
+import { players } from '../../data/players';
 import './Autocomplete.scss';
 
 const Autocomplete = () => {
-  const [searchedPlayers, setSearchedPlayers] = useState<IPlayer[]>([]);
+  const [searchedPlayers, setSearchedPlayers] = useState<IPlayerData[] | any>(
+    []
+  );
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [hidden, setHidden] = useState(true);
 
-  const choosePlayer = (player: IPlayer) => {
-    const convertToFullName = fullName(player.first_name, player.last_name);
+  const choosePlayer = (player: IPlayerData) => {
+    const convertToFullName = fullName(player.firstName, player.lastName);
     setSelectedPlayer(convertToFullName);
     setHidden(true);
   };
@@ -23,13 +26,13 @@ const Autocomplete = () => {
         hidden={hidden}
         setHidden={setHidden}
       />
-      {searchedPlayers.length && !hidden && (
+      {searchedPlayers.length > 0 && (
         <ul className="autocomplete-list">
-          {searchedPlayers.map((player: IPlayer) => (
+          {searchedPlayers.map((player: IPlayerData) => (
             <li
-              key={player.id}
+              key={player.personId}
               onClick={() => choosePlayer(player)}
-            >{`${player.first_name} ${player.last_name}`}</li>
+            >{`${player.firstName} ${player.lastName}`}</li>
           ))}
         </ul>
       )}
