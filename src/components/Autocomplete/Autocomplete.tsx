@@ -21,7 +21,8 @@ const Autocomplete = ({ addGuess, secrectHooper }: IAutocompleteProps) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!selectedPlayer && searchedPlayers.length > 1) {
+
+    if (!selectedPlayer && searchedPlayers.length > 0) {
       addGuess(searchedPlayers[0]);
     } else if (selectedPlayer) {
       addGuess(selectedPlayer);
@@ -31,7 +32,6 @@ const Autocomplete = ({ addGuess, secrectHooper }: IAutocompleteProps) => {
     setHidden(true);
   };
 
-  console.log(hidden);
   return (
     <div className="autocomplete">
       <form onSubmit={handleSubmit}>

@@ -11,15 +11,22 @@ import './App.css';
 const App = () => {
   const [guesses, setGuesses] = useState<IPlayerData[]>([]);
   const [secrectHooper, setSecretHooper] = useState<IPlayerData | null>(null);
+  const [correctGuess, setCorrectGuess] = useState(false);
 
   const getSecretHooper = () => {
     const randomHooper = pickPlayer(players);
     setSecretHooper(randomHooper);
   };
 
+  const correctHooper = (player?: IPlayerData) => {
+    if (player?.personId === secrectHooper?.personId) {
+      setCorrectGuess(true);
+    }
+  };
+
   const addGuess = (selectedPlayer?: IPlayerData) => {
-    console.log(guesses, selectedPlayer);
     selectedPlayer && setGuesses([...guesses, selectedPlayer]);
+    correctHooper(selectedPlayer);
   };
 
   useEffect(() => getSecretHooper(), []);
@@ -28,6 +35,15 @@ const App = () => {
     <div className="App">
       <Navbar />
       <main>
+        {correctGuess && (
+          <div>
+            <p>{`You solved it in ${guesses.length} guesses.`}</p>
+            <p>{`Secret player was: ${fullName(
+              secrectHooper?.firstName,
+              secrectHooper?.lastName
+            )}`}</p>
+          </div>
+        )}
         <Autocomplete addGuess={addGuess} secrectHooper={secrectHooper} />
         {secrectHooper && (
           <h2>{fullName(secrectHooper?.firstName, secrectHooper?.lastName)}</h2>

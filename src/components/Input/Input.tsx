@@ -44,7 +44,6 @@ const Input = ({
 
   useLayoutEffect(() => {
     if (search !== '' && inputRef.current) {
-      console.log('searc', search);
       inputRef.current.focus();
     }
   }, [search]);
