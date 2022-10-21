@@ -32,7 +32,6 @@ export const filterNames = (name?: string) => {
 };
 
 export const fullName = (first?: string, last?: string) => {
-  console.log(first, last);
   return `${first} ${last}`;
 };
 

@@ -1,5 +1,12 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
-import { fetchNames, filterNames } from '../../utils';
+import React, {
+  useState,
+  useEffect,
+  ChangeEvent,
+  FormEvent,
+  useRef,
+  useLayoutEffect,
+} from 'react';
+import { fetchNames, filterNames, fullName } from '../../utils';
 import { IInputProps } from '../../types';
 import './Input.scss';
 
@@ -9,7 +16,8 @@ const Input = ({
   hidden,
   setHidden,
 }: IInputProps) => {
-  const [search, setSearch] = useState(selectedPlayer);
+  const [search, setSearch] = useState('');
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -26,11 +34,24 @@ const Input = ({
   }, [search]);
 
   useEffect(() => {
-    setSearch(selectedPlayer);
+    const convertToFullName =
+      selectedPlayer === null
+        ? ''
+        : fullName(selectedPlayer.firstName, selectedPlayer.lastName);
+
+    setSearch(convertToFullName);
   }, [selectedPlayer]);
+
+  useLayoutEffect(() => {
+    if (search !== '' && inputRef.current) {
+      console.log('searc', search);
+      inputRef.current.focus();
+    }
+  }, [search]);
 
   return (
     <input
+      ref={inputRef}
       type="text"
       autoComplete="off"
       placeholder="Guess the hooper"

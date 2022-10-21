@@ -1,32 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import Input from '../Input/Input';
-import { IPlayer, IPlayerData } from '../../types';
+import { IPlayer, IPlayerData, IAutocompleteProps } from '../../types';
 import { fetchNames, fullName, pickPlayer } from '../../utils';
 import { players } from '../../data/players';
 import './Autocomplete.scss';
 
-const Autocomplete = () => {
+const Autocomplete = ({ addGuess, secrectHooper }: IAutocompleteProps) => {
   const [searchedPlayers, setSearchedPlayers] = useState<IPlayerData[] | any>(
     []
   );
-  const [selectedPlayer, setSelectedPlayer] = useState('');
+  const [selectedPlayer, setSelectedPlayer] = useState<IPlayerData | null>(
+    null
+  );
   const [hidden, setHidden] = useState(true);
 
   const choosePlayer = (player: IPlayerData) => {
-    const convertToFullName = fullName(player.firstName, player.lastName);
-    setSelectedPlayer(convertToFullName);
+    setSelectedPlayer(player);
     setHidden(true);
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!selectedPlayer && searchedPlayers.length > 1) {
+      addGuess(searchedPlayers[0]);
+    } else if (selectedPlayer) {
+      addGuess(selectedPlayer);
+    }
+
+    setSelectedPlayer(null);
+    setHidden(true);
+  };
+
+  console.log(hidden);
   return (
     <div className="autocomplete">
-      <Input
-        selectedPlayer={selectedPlayer}
-        setSearchedPlayers={setSearchedPlayers}
-        hidden={hidden}
-        setHidden={setHidden}
-      />
-      {searchedPlayers.length > 0 && (
+      <form onSubmit={handleSubmit}>
+        <Input
+          selectedPlayer={selectedPlayer}
+          setSearchedPlayers={setSearchedPlayers}
+          hidden={hidden}
+          setHidden={setHidden}
+        />
+      </form>
+
+      {searchedPlayers && !hidden && (
         <ul className="autocomplete-list">
           {searchedPlayers.map((player: IPlayerData) => (
             <li

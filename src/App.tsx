@@ -9,12 +9,17 @@ import Navbar from './components/Navbar/Navbar';
 import './App.css';
 
 const App = () => {
-  const [gueses, setGuesses] = useState([]);
+  const [guesses, setGuesses] = useState<IPlayerData[]>([]);
   const [secrectHooper, setSecretHooper] = useState<IPlayerData | null>(null);
 
   const getSecretHooper = () => {
     const randomHooper = pickPlayer(players);
     setSecretHooper(randomHooper);
+  };
+
+  const addGuess = (selectedPlayer?: IPlayerData) => {
+    console.log(guesses, selectedPlayer);
+    selectedPlayer && setGuesses([...guesses, selectedPlayer]);
   };
 
   useEffect(() => getSecretHooper(), []);
@@ -23,11 +28,11 @@ const App = () => {
     <div className="App">
       <Navbar />
       <main>
-        <Autocomplete />
+        <Autocomplete addGuess={addGuess} secrectHooper={secrectHooper} />
         {secrectHooper && (
           <h2>{fullName(secrectHooper?.firstName, secrectHooper?.lastName)}</h2>
         )}
-        <HooperList />
+        <HooperList guesses={guesses} secrectHooper={secrectHooper} />
       </main>
       <Footer />
     </div>

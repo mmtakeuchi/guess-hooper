@@ -43,18 +43,18 @@ export interface IPlayerData {
   country: string;
 }
 
-export interface IPlayerDataArr {
-  players: IPlayerData[];
+export interface IAutocompleteProps {
+  secrectHooper: IPlayerData | null;
+  addGuess: (selectedPlayer?: IPlayerData | any) => void;
 }
-
 export interface IInputProps {
-  selectedPlayer?: string;
+  selectedPlayer: IPlayerData | null;
   setSearchedPlayers: (players: IPlayerData[]) => void;
   hidden: boolean;
   setHidden: (hidden: boolean) => void;
 }
 
 export interface IHooperListProps {
-  guesses: IPlayer[];
-  secretHooper: IPlayerData;
+  guesses: IPlayerData[];
+  secrectHooper: IPlayerData | null;
 }

@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { IHooperListProps, IPlayerData } from '../../types';
 import './HooperList.scss';
 
-interface Props {}
-
-const HooperList = (props: Props) => {
-  return <div>HooperList</div>;
+const HooperList = ({ guesses, secrectHooper }: IHooperListProps) => {
+  console.log(guesses);
+  return (
+    <div>
+      {guesses.length > 0 && (
+        <ul>
+          {guesses.map((player: IPlayerData) => {
+            console.log(player);
+            return <li key={player.personId}>{player.firstName}</li>;
+          })}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default HooperList;
