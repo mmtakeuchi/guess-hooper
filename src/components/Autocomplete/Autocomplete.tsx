@@ -1,8 +1,7 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import Input from '../Input/Input';
-import { IPlayer, IPlayerData, IAutocompleteProps } from '../../types';
-import { fetchNames, fullName, pickPlayer } from '../../utils';
-import { players } from '../../data/players';
+import { IPlayerData, IAutocompleteProps } from '../../types';
+
 import './Autocomplete.scss';
 
 const Autocomplete = ({ addGuess, secrectHooper }: IAutocompleteProps) => {

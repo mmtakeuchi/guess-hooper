@@ -2,11 +2,10 @@ import React, {
   useState,
   useEffect,
   ChangeEvent,
-  FormEvent,
   useRef,
   useLayoutEffect,
 } from 'react';
-import { fetchNames, filterNames, fullName } from '../../utils';
+import { filterNames, fullName } from '../../utils';
 import { IInputProps } from '../../types';
 import './Input.scss';
 

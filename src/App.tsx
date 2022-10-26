@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { players } from './data/players';
-import { IPlayer, IPlayerData } from './types/index';
-import { fetchNames, fullName, pickPlayer, availableHeight } from './utils';
+import { IPlayerData } from './types/index';
+import { fullName, pickPlayer, findTeam } from './utils';
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import Footer from './components/Footer/Footer';
 import HooperList from './components/HooperList/HooperList';
@@ -12,11 +12,7 @@ const App = () => {
   const [guesses, setGuesses] = useState<IPlayerData[]>([]);
   const [secrectHooper, setSecretHooper] = useState<IPlayerData | null>(null);
   const [correctGuess, setCorrectGuess] = useState(false);
-
-  const getSecretHooper = () => {
-    const randomHooper = pickPlayer(players);
-    setSecretHooper(randomHooper);
-  };
+  console.log(secrectHooper, findTeam(secrectHooper?.teamId));
 
   const correctHooper = (player?: IPlayerData) => {
     if (player?.personId === secrectHooper?.personId) {
@@ -29,7 +25,15 @@ const App = () => {
     correctHooper(selectedPlayer);
   };
 
-  useEffect(() => getSecretHooper(), []);
+  useEffect(() => {
+    const getSecretHooper = () => {
+      const randomHooper = pickPlayer(players);
+
+      setSecretHooper(randomHooper);
+    };
+
+    getSecretHooper();
+  }, []);
 
   return (
     <div className="App">

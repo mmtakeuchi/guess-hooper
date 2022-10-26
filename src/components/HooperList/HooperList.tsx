@@ -1,20 +1,38 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import HooperItem from '../HooperItem/HooperItem';
 import { IHooperListProps, IPlayerData } from '../../types';
 import './HooperList.scss';
 
 const HooperList = ({ guesses, secrectHooper }: IHooperListProps) => {
-  console.log(guesses);
   return (
-    <div>
+    <table className="hooper-list">
+      <thead>
+        <tr className="hooper-list-headers">
+          <th>Player</th>
+          <th>Team</th>
+          <th>Conf</th>
+          <th>Div</th>
+          <th>Pos</th>
+          <th>HT</th>
+          <th>Age</th>
+          <th>#</th>
+        </tr>
+      </thead>
       {guesses.length > 0 && (
-        <ul>
-          {guesses.map((player: IPlayerData) => {
+        <tbody>
+          {guesses?.map((player: IPlayerData) => {
             console.log(player);
-            return <li key={player.personId}>{player.firstName}</li>;
+            return (
+              <HooperItem
+                hooper={player}
+                secrectHooper={secrectHooper}
+                key={player.personId}
+              />
+            );
           })}
-        </ul>
+        </tbody>
       )}
-    </div>
+    </table>
   );
 };
 

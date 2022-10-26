@@ -2,6 +2,19 @@ export interface IPlayer {
   id: number;
   first_name: string;
   last_name: string;
+  height_feet: number;
+  height_inches: number;
+  weight_pounds: number;
+  position: string;
+  team: {
+    abbreviation: string;
+    city: string;
+    conference: string;
+    division: string;
+    full_name: string;
+    id: number;
+    name: string;
+  };
 }
 
 export interface IPlayerData {
@@ -43,6 +56,20 @@ export interface IPlayerData {
   country: string;
 }
 
+export interface ITeamData {
+  id: number;
+  abbreviation: string;
+  city: string;
+  conference: string;
+  division: string;
+  full_name: string;
+  name: string;
+}
+
+export interface ITeams {
+  teams: ITeamData[];
+}
+
 export interface IAutocompleteProps {
   secrectHooper: IPlayerData | null;
   addGuess: (selectedPlayer?: IPlayerData | any) => void;
@@ -56,5 +83,10 @@ export interface IInputProps {
 
 export interface IHooperListProps {
   guesses: IPlayerData[];
+  secrectHooper: IPlayerData | null;
+}
+
+export interface IHooperItemProps {
+  hooper: IPlayerData;
   secrectHooper: IPlayerData | null;
 }
