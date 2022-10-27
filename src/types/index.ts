@@ -71,7 +71,7 @@ export interface ITeams {
 }
 
 export interface IAutocompleteProps {
-  secrectHooper: IPlayerData | null;
+  secretHooper: IPlayerData | null;
   addGuess: (selectedPlayer?: IPlayerData | any) => void;
 }
 export interface IInputProps {
@@ -83,10 +83,10 @@ export interface IInputProps {
 
 export interface IHooperListProps {
   guesses: IPlayerData[];
-  secrectHooper: IPlayerData | null;
+  secretHooper: IPlayerData | null;
 }
 
 export interface IHooperItemProps {
   hooper: IPlayerData;
-  secrectHooper: IPlayerData | null;
+  secretHooper: IPlayerData | null;
 }

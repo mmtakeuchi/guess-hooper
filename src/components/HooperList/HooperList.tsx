@@ -3,7 +3,7 @@ import HooperItem from '../HooperItem/HooperItem';
 import { IHooperListProps, IPlayerData } from '../../types';
 import './HooperList.scss';
 
-const HooperList = ({ guesses, secrectHooper }: IHooperListProps) => {
+const HooperList = ({ guesses, secretHooper }: IHooperListProps) => {
   return (
     <table className="hooper-list">
       <thead>
@@ -25,7 +25,7 @@ const HooperList = ({ guesses, secrectHooper }: IHooperListProps) => {
             return (
               <HooperItem
                 hooper={player}
-                secrectHooper={secrectHooper}
+                secretHooper={secretHooper}
                 key={player.personId}
               />
             );

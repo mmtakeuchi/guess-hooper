@@ -1,23 +1,30 @@
 .hooper-item {
   display: grid;
-  justify-items: center;
-  align-items: center;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  margin: 0;
-  padding: 0.3rem;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 1.1em;
-  font-weight: 600;
   border-bottom: 1px solid black;
 
-  &-correct {
-    background-color: #37be75;
+  div {
+    height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+
+  & .correct {
+    background-color: #538d4e;
     color: #fff;
   }
 
-  &-close {
-    background-color: #f4e878;
+  & .close {
+    background-color: #b59f3b;
   }
 
   &-team-logo {
@@ -25,5 +32,8 @@
       height: auto;
       width: 50px;
     }
+  }
+
+  &-division {
   }
 }

@@ -4,7 +4,7 @@ import { IPlayerData, IAutocompleteProps } from '../../types';
 
 import './Autocomplete.scss';
 
-const Autocomplete = ({ addGuess, secrectHooper }: IAutocompleteProps) => {
+const Autocomplete = ({ addGuess, secretHooper }: IAutocompleteProps) => {
   const [searchedPlayers, setSearchedPlayers] = useState<IPlayerData[] | any>(
     []
   );

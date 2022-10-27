@@ -61,11 +61,13 @@ export const combineStrings = (...args: string[]) => {
   return args.join(' ');
 };
 
-export const calculateAge = (birthday: string) => {
-  const ageDifMs = Date.now() - new Date(birthday).getTime();
-  const ageDate = new Date(ageDifMs);
+export const calculateAge = (birthday: string | undefined) => {
+  if (birthday !== undefined) {
+    const ageDifMs = Date.now() - new Date(birthday).getTime();
+    const ageDate = new Date(ageDifMs);
 
-  return Math.abs(ageDate.getUTCFullYear() - 1970);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
 };
 
 const randomNum = (list: []) => {
@@ -83,4 +85,11 @@ export const findTeam = (teamId: string | undefined) => {
 
 export const getTeamLogo = (teamId: string) => {
   return `https://cdn.nba.com/logos/nba/${teamId}/primary/L/logo.svg`;
+};
+
+export const compareHoopers = (
+  hooper: string | undefined,
+  secret: string | undefined
+) => {
+  return hooper === secret ? ' correct' : '';
 };

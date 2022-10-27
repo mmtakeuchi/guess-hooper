@@ -1,5 +1,6 @@
 .hooper-list {
   max-width: 1000px;
+  border-spacing: 0;
 
   &-headers {
     border-bottom: 2px solid #003554;
@@ -13,5 +14,10 @@
     font-weight: 700;
     text-align: center;
     color: #003554;
+  }
+
+  tbody {
+    margin: 0;
+    padding: 0;
   }
 }

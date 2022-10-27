@@ -10,12 +10,12 @@ import './App.css';
 
 const App = () => {
   const [guesses, setGuesses] = useState<IPlayerData[]>([]);
-  const [secrectHooper, setSecretHooper] = useState<IPlayerData | null>(null);
+  const [secretHooper, setSecretHooper] = useState<IPlayerData | null>(null);
   const [correctGuess, setCorrectGuess] = useState(false);
-  console.log(secrectHooper, findTeam(secrectHooper?.teamId));
+  console.log(secretHooper, findTeam(secretHooper?.teamId));
 
   const correctHooper = (player?: IPlayerData) => {
-    if (player?.personId === secrectHooper?.personId) {
+    if (player?.personId === secretHooper?.personId) {
       setCorrectGuess(true);
     }
   };
@@ -43,16 +43,18 @@ const App = () => {
           <div>
             <p>{`You solved it in ${guesses.length} guesses.`}</p>
             <p>{`Secret player was: ${fullName(
-              secrectHooper?.firstName,
-              secrectHooper?.lastName
+              secretHooper?.firstName,
+              secretHooper?.lastName
             )}`}</p>
           </div>
         )}
-        <Autocomplete addGuess={addGuess} secrectHooper={secrectHooper} />
-        {secrectHooper && (
-          <h2>{fullName(secrectHooper?.firstName, secrectHooper?.lastName)}</h2>
+        <Autocomplete addGuess={addGuess} secretHooper={secretHooper} />
+        {secretHooper && (
+          <h2>{fullName(secretHooper?.firstName, secretHooper?.lastName)}</h2>
         )}
-        <HooperList guesses={guesses} secrectHooper={secrectHooper} />
+        {guesses.length > 0 && (
+          <HooperList guesses={guesses} secretHooper={secretHooper} />
+        )}
       </main>
       <Footer />
     </div>
