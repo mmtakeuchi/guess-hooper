@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { players } from '../data/players';
 import { teams } from '../data/teams';
-import { IPlayer, IPlayerData, ITeamData } from '../types';
+import { IPlayer, IPlayerData, ITeamData, IPlayersTeamData } from '../types';
 
 export const fetchNames = async (name?: string) => {
   const baseUrl = 'https://www.balldontlie.io/api/v1/players?per_page=5';
@@ -92,4 +92,71 @@ export const compareHoopers = (
   secret: string | undefined
 ) => {
   return hooper === secret ? ' correct' : '';
+};
+
+export const compareNumbers = (
+  guessNum: string | undefined,
+  secretNum: string | undefined
+) => {
+  let dif = Math.abs(Number(guessNum) - Number(secretNum));
+
+  if (dif === 0) {
+    return ' correct';
+  } else if (dif <= 2) {
+    return ' close';
+  } else {
+    return '';
+  }
+};
+
+export const compareHeights = (
+  guessHeight: (string | undefined)[],
+  secretHeight: (string | undefined)[]
+) => {
+  let guessHooperHeight = (
+    Number(guessHeight[0]) * 12 +
+    Number(guessHeight[1])
+  ).toString();
+  let secretHooperHeight = (
+    Number(secretHeight[0]) * 12 +
+    Number(secretHeight[1])
+  ).toString();
+
+  return compareNumbers(guessHooperHeight, secretHooperHeight);
+};
+
+export const compareTeams = (
+  guessTeam: string | undefined,
+  secretTeams:
+    | {
+        teamId: string;
+        seasonStart: string;
+        seasonEnd: string;
+      }[]
+    | undefined
+) => {
+  if (secretTeams) {
+    let secrets = secretTeams?.map((team: any) => team.teamId);
+
+    if (guessTeam === secrets[secrets.length - 1]) {
+      return ' correct';
+    } else if (secrets.includes(guessTeam)) {
+      return ' close';
+    } else {
+      return '';
+    }
+  }
+};
+
+export const comparePos = (guessPos: string, secretPos: string | undefined) => {
+  if (guessPos === secretPos) {
+    return ' correct';
+  } else if (
+    secretPos?.includes(guessPos) ||
+    (secretPos && guessPos.includes(secretPos))
+  ) {
+    return ' close';
+  } else {
+    return '';
+  }
 };

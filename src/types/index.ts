@@ -70,6 +70,12 @@ export interface ITeams {
   teams: ITeamData[];
 }
 
+export interface IPlayersTeamData {
+  teamId: string;
+  seasonStart: string;
+  seasonEnd: string;
+}
+
 export interface IAutocompleteProps {
   secretHooper: IPlayerData | null;
   addGuess: (selectedPlayer?: IPlayerData | any) => void;

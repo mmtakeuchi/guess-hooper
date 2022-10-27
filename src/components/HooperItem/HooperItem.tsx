@@ -6,6 +6,10 @@ import {
   calculateAge,
   getTeamLogo,
   compareHoopers,
+  compareNumbers,
+  compareHeights,
+  compareTeams,
+  comparePos,
 } from '../../utils';
 import './HooperItem.scss';
 
@@ -35,9 +39,10 @@ const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
       </td>
       <td>
         <div
-          className={`hooper-item-team-logo${
-            hooper.teamId === secretHooper?.teamId ? ' correct' : ''
-          }`}
+          className={`hooper-item-team-logo${compareTeams(
+            hooper.teamId,
+            secretHooper?.teams
+          )}`}
         >
           <img src={getTeamLogo(hooper.teamId)} alt="team logo" />
           <span>{findTeam(hooper.teamId)?.abbreviation}</span>
@@ -65,7 +70,7 @@ const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
       </td>
       <td>
         <div
-          className={`hooper-item-pos${compareHoopers(
+          className={`hooper-item-pos${comparePos(
             hooper.pos,
             secretHooper?.pos
           )}`}
@@ -75,15 +80,15 @@ const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
       </td>
       <td>
         <div
-          className={`hooper-item-height${compareHoopers(
-            `${hooper.heightFeet}${hooper.heightInches}`,
-            `${secretHooper?.heightFeet}${secretHooper?.heightInches}`
+          className={`hooper-item-height${compareHeights(
+            [hooper.heightFeet, hooper.heightInches],
+            [secretHooper?.heightFeet, secretHooper?.heightInches]
           )}`}
         >{`${hooper.heightFeet}' ${hooper.heightInches}"`}</div>
       </td>
       <td>
         <div
-          className={`hooper-item-age${compareHoopers(
+          className={`hooper-item-age${compareNumbers(
             calculateAge(hooper?.dateOfBirthUTC)?.toString(),
             calculateAge(secretHooper?.dateOfBirthUTC)?.toString()
           )}`}
@@ -93,7 +98,7 @@ const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
       </td>
       <td>
         <div
-          className={`hooper-item-jersey${compareHoopers(
+          className={`hooper-item-jersey${compareNumbers(
             hooper.jersey,
             secretHooper?.jersey
           )}`}
