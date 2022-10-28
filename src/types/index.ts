@@ -101,4 +101,5 @@ export interface IResultProps {
   secretHooper: IPlayerData | null;
   correct: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  isPlaying: boolean;
 }

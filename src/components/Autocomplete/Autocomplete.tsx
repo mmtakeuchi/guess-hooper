@@ -42,7 +42,7 @@ const Autocomplete = ({ addGuess, secretHooper }: IAutocompleteProps) => {
         />
       </form>
 
-      {searchedPlayers && !hidden && (
+      {searchedPlayers.length > 0 && !hidden && (
         <ul className="autocomplete-list">
           {searchedPlayers.map((player: IPlayerData) => (
             <li

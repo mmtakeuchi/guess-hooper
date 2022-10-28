@@ -3,7 +3,12 @@ import { IResultProps } from '../../types';
 import { fullName } from '../../utils';
 import './Result.scss';
 
-const Result = ({ correct, secretHooper, setIsOpen }: IResultProps) => {
+const Result = ({
+  correct,
+  secretHooper,
+  setIsOpen,
+  isPlaying,
+}: IResultProps) => {
   useEffect(() => {
     const closeOnEscapeKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'Escape') {
@@ -43,20 +48,35 @@ const Result = ({ correct, secretHooper, setIsOpen }: IResultProps) => {
         </button>
         <div className="result-box-content">
           <img
+            className={`result-box-content-image_${
+              isPlaying ? 'blackout' : ''
+            }`}
             src={`https://cdn.nba.com/headshots/nba/latest/1040x760/${secretHooper?.personId}.png`}
             alt="hooper headshot"
           />
 
           <div className="result-box-content-info">
-            <h3>
-              {correct ? 'Congratulations!' : 'Sorry, the correct answer is'}
-            </h3>
-            <h2>{fullName(secretHooper?.firstName, secretHooper?.lastName)}</h2>
+            {!isPlaying ? (
+              <>
+                <h3>
+                  {correct
+                    ? 'Congratulations!'
+                    : 'Sorry, the correct answer is'}
+                </h3>
+                <h2>
+                  {fullName(secretHooper?.firstName, secretHooper?.lastName)}
+                </h2>
+              </>
+            ) : (
+              <h2>Guess the Hooper</h2>
+            )}
           </div>
 
-          <div className="result-box-content-timer">
-            <h3>Next hooper in 12:00:00</h3>
-          </div>
+          {!isPlaying && (
+            <div className="result-box-content-timer">
+              <h3>Next hooper in 12:00:00</h3>
+            </div>
+          )}
         </div>
       </div>
     </div>

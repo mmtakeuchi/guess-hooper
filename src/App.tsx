@@ -14,6 +14,7 @@ const App = () => {
   const [secretHooper, setSecretHooper] = useState<IPlayerData | null>(null);
   const [correctGuess, setCorrectGuess] = useState(false);
   const [showSecret, setShowSecret] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const correctHooper = (player?: IPlayerData) => {
     if (player?.personId === secretHooper?.personId) {
@@ -36,6 +37,15 @@ const App = () => {
     getSecretHooper();
   }, []);
 
+  useEffect(() => {
+    const checkPlaying = () => {
+      let isActive = guesses.length < 8;
+      setIsPlaying(isActive);
+    };
+
+    checkPlaying();
+  }, [guesses]);
+
   return (
     <div className="App">
       <Navbar />
@@ -50,18 +60,20 @@ const App = () => {
           </div>
         )}
         <Autocomplete addGuess={addGuess} secretHooper={secretHooper} />
-        {secretHooper && (
-          <h2>{fullName(secretHooper?.firstName, secretHooper?.lastName)}</h2>
-        )}
+
         {!showSecret ? (
-          <button onClick={() => setShowSecret(!showSecret)}>
-            Show Secret
+          <button
+            className="result-btn"
+            onClick={() => setShowSecret(!showSecret)}
+          >
+            {isPlaying ? 'Show Hint' : 'Results'}
           </button>
         ) : (
           <Result
             correct={correctGuess}
             secretHooper={secretHooper}
             setIsOpen={setShowSecret}
+            isPlaying={isPlaying}
           />
         )}
         {guesses.length > 0 && (

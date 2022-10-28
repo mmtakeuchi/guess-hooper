@@ -40,8 +40,12 @@
       flex-direction: column;
       align-items: center;
 
-      img {
+      &-image {
         width: 80%;
+
+        &_blackout {
+          filter: brightness(0);
+        }
       }
 
       &-info {
