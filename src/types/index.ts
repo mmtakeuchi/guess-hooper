@@ -96,3 +96,9 @@ export interface IHooperItemProps {
   hooper: IPlayerData;
   secretHooper: IPlayerData | null;
 }
+
+export interface IResultProps {
+  secretHooper: IPlayerData | null;
+  correct: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}

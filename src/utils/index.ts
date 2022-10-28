@@ -15,10 +15,14 @@ export const fetchNames = async (name?: string) => {
   return data;
 };
 
-export const availableHeight = (player: IPlayer) => {
-  const height = player.height_feet && player.height_inches ? true : false;
+export const availableHeight = (player: IPlayerData) => {
+  const height = player.heightFeet && player.heightInches ? true : false;
 
   return height;
+};
+
+export const isValidHooper = (hooper: IPlayerData) => {
+  return hooper && availableHeight(hooper) && hooper.teams.length > 0;
 };
 
 export const fetchPlayer = async () => {
@@ -28,12 +32,29 @@ export const fetchPlayer = async () => {
   const response = await axios.get(`${baseUrl}/${randomNum}`);
   const player = await response.data;
 
-  console.log(player);
-  if (player !== undefined && availableHeight(player)) {
+  if (isValidHooper(player)) {
     return player;
   } else {
     fetchPlayer();
   }
+};
+
+const randomNum = (list: []) => {
+  return Math.floor(Math.random() * list.length);
+};
+
+export const pickPlayer = (players: IPlayerData[] | any) => {
+  let randomIndex = randomNum(players);
+  let player = players[randomIndex];
+
+  while (!isValidHooper(player)) {
+    randomIndex = randomNum(players);
+    player = players[randomIndex];
+
+    pickPlayer(players);
+  }
+
+  return player;
 };
 
 export const filterNames = (name?: string) => {
@@ -68,15 +89,6 @@ export const calculateAge = (birthday: string | undefined) => {
 
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
-};
-
-const randomNum = (list: []) => {
-  return Math.floor(Math.random() * list.length);
-};
-
-export const pickPlayer = (players: IPlayerData[] | any) => {
-  const randomIndex = randomNum(players);
-  return players[randomIndex];
 };
 
 export const findTeam = (teamId: string | undefined) => {

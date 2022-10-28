@@ -6,13 +6,14 @@ import Autocomplete from './components/Autocomplete/Autocomplete';
 import Footer from './components/Footer/Footer';
 import HooperList from './components/HooperList/HooperList';
 import Navbar from './components/Navbar/Navbar';
+import Result from './components/Result/Result';
 import './App.css';
 
 const App = () => {
   const [guesses, setGuesses] = useState<IPlayerData[]>([]);
   const [secretHooper, setSecretHooper] = useState<IPlayerData | null>(null);
   const [correctGuess, setCorrectGuess] = useState(false);
-  console.log(secretHooper, findTeam(secretHooper?.teamId));
+  const [showSecret, setShowSecret] = useState(false);
 
   const correctHooper = (player?: IPlayerData) => {
     if (player?.personId === secretHooper?.personId) {
@@ -51,6 +52,17 @@ const App = () => {
         <Autocomplete addGuess={addGuess} secretHooper={secretHooper} />
         {secretHooper && (
           <h2>{fullName(secretHooper?.firstName, secretHooper?.lastName)}</h2>
+        )}
+        {!showSecret ? (
+          <button onClick={() => setShowSecret(!showSecret)}>
+            Show Secret
+          </button>
+        ) : (
+          <Result
+            correct={correctGuess}
+            secretHooper={secretHooper}
+            setIsOpen={setShowSecret}
+          />
         )}
         {guesses.length > 0 && (
           <HooperList guesses={guesses} secretHooper={secretHooper} />
