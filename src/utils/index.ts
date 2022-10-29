@@ -139,6 +139,7 @@ export const compareHeights = (
 
 export const compareTeams = (
   guessTeam: string | undefined,
+  secretCurrentTeam: string | undefined,
   secretTeams:
     | {
         teamId: string;
@@ -147,6 +148,7 @@ export const compareTeams = (
       }[]
     | undefined
 ) => {
+  if (guessTeam === secretCurrentTeam) return ' correct';
   if (secretTeams) {
     let secrets = secretTeams?.map((team: any) => team.teamId);
 

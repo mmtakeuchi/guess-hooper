@@ -32,6 +32,7 @@ const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
         <div
           className={`hooper-item-team-logo${compareTeams(
             hooper.teamId,
+            secretHooper?.teamId,
             secretHooper?.teams
           )}`}
         >
