@@ -82,7 +82,10 @@ export interface IAutocompleteProps {
 }
 export interface IInputProps {
   selectedPlayer: IPlayerData | null;
+  searchedPlayers: IPlayerData[];
+  addGuess: (selectedPlayer?: IPlayerData | any) => void;
   setSearchedPlayers: (players: IPlayerData[]) => void;
+  setSelectedPlayer: (player: IPlayerData | null) => void;
   hidden: boolean;
   setHidden: (hidden: boolean) => void;
 }

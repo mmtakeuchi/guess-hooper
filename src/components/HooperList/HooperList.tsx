@@ -21,7 +21,6 @@ const HooperList = ({ guesses, secretHooper }: IHooperListProps) => {
       {guesses.length > 0 && (
         <tbody>
           {guesses?.map((player: IPlayerData) => {
-            console.log(player);
             return (
               <HooperItem
                 hooper={player}

@@ -2,16 +2,20 @@ import React, {
   useState,
   useEffect,
   ChangeEvent,
+  FormEvent,
   useRef,
   useLayoutEffect,
 } from 'react';
 import { filterNames, fullName } from '../../utils';
 import { IInputProps } from '../../types';
-import './Input.scss';
+import './SearchInput.scss';
 
-const Input = ({
+const SearchInput = ({
   selectedPlayer,
+  searchedPlayers,
   setSearchedPlayers,
+  setSelectedPlayer,
+  addGuess,
   hidden,
   setHidden,
 }: IInputProps) => {
@@ -26,6 +30,20 @@ const Input = ({
   const searchPlayers = (playerName: string | undefined) => {
     const filteredPlayers = filterNames(playerName);
     setSearchedPlayers(filteredPlayers);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!selectedPlayer && searchedPlayers.length > 0) {
+      addGuess(searchedPlayers[0]);
+    } else if (selectedPlayer) {
+      addGuess(selectedPlayer);
+    }
+
+    setSearch('');
+    setSelectedPlayer(null);
+    setHidden(true);
   };
 
   useEffect(() => {
@@ -48,15 +66,17 @@ const Input = ({
   }, [search]);
 
   return (
-    <input
-      ref={inputRef}
-      type="text"
-      autoComplete="off"
-      placeholder="Guess the hooper"
-      value={search}
-      onChange={handleInput}
-    />
+    <form onSubmit={handleSubmit}>
+      <input
+        ref={inputRef}
+        type="text"
+        autoComplete="off"
+        placeholder="Guess the hooper"
+        value={search}
+        onChange={handleInput}
+      />
+    </form>
   );
 };
 
-export default Input;
+export default SearchInput;

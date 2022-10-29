@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import Input from '../Input/Input';
+import SearchInput from '../SearchInput/SearchInput';
 import { IPlayerData, IAutocompleteProps } from '../../types';
 
 import './Autocomplete.scss';
@@ -18,29 +18,17 @@ const Autocomplete = ({ addGuess, secretHooper }: IAutocompleteProps) => {
     setHidden(true);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!selectedPlayer && searchedPlayers.length > 0) {
-      addGuess(searchedPlayers[0]);
-    } else if (selectedPlayer) {
-      addGuess(selectedPlayer);
-    }
-
-    setSelectedPlayer(null);
-    setHidden(true);
-  };
-
   return (
     <div className="autocomplete">
-      <form onSubmit={handleSubmit}>
-        <Input
-          selectedPlayer={selectedPlayer}
-          setSearchedPlayers={setSearchedPlayers}
-          hidden={hidden}
-          setHidden={setHidden}
-        />
-      </form>
+      <SearchInput
+        selectedPlayer={selectedPlayer}
+        searchedPlayers={searchedPlayers}
+        setSearchedPlayers={setSearchedPlayers}
+        setSelectedPlayer={setSelectedPlayer}
+        addGuess={addGuess}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
 
       {searchedPlayers.length > 0 && !hidden && (
         <ul className="autocomplete-list">

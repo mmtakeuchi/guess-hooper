@@ -14,15 +14,6 @@ import {
 import './HooperItem.scss';
 
 const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
-  console.log(hooper, secretHooper);
-  console.log(
-    findTeam(hooper.teamId)?.conference,
-    findTeam(secretHooper?.teamId)?.conference,
-    compareHoopers(
-      findTeam(hooper.teamId)?.conference,
-      findTeam(secretHooper?.teamId)?.conference
-    )
-  );
   return (
     <tr className="hooper-item">
       <td>
