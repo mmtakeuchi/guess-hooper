@@ -88,6 +88,7 @@ export interface IInputProps {
   setSelectedPlayer: (player: IPlayerData | null) => void;
   hidden: boolean;
   setHidden: (hidden: boolean) => void;
+  handleKeyDown: (e: any) => void;
 }
 
 export interface IHooperListProps {

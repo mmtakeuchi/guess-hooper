@@ -18,6 +18,7 @@ const SearchInput = ({
   addGuess,
   hidden,
   setHidden,
+  handleKeyDown,
 }: IInputProps) => {
   const [search, setSearch] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -74,6 +75,7 @@ const SearchInput = ({
         placeholder="Guess the hooper"
         value={search}
         onChange={handleInput}
+        onKeyDown={handleKeyDown}
       />
     </form>
   );
