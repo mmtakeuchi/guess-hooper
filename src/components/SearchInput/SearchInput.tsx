@@ -29,8 +29,10 @@ const SearchInput = ({
   };
 
   const searchPlayers = (playerName: string | undefined) => {
-    const filteredPlayers = filterNames(playerName);
-    setSearchedPlayers(filteredPlayers);
+    if (playerName) {
+      const filteredPlayers = filterNames(playerName);
+      setSearchedPlayers(filteredPlayers);
+    }
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -50,6 +52,8 @@ const SearchInput = ({
   useEffect(() => {
     searchPlayers(search);
   }, [search]);
+
+  console.log(searchedPlayers, selectedPlayer);
 
   useEffect(() => {
     const convertToFullName =

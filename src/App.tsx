@@ -59,7 +59,13 @@ const App = () => {
             )}`}</p>
           </div>
         )}
-        <Autocomplete addGuess={addGuess} secretHooper={secretHooper} />
+        {isPlaying && (
+          <Autocomplete
+            guesses={guesses}
+            addGuess={addGuess}
+            secretHooper={secretHooper}
+          />
+        )}
 
         {!showSecret ? (
           <button
