@@ -53,8 +53,6 @@ const SearchInput = ({
     searchPlayers(search);
   }, [search]);
 
-  console.log(searchedPlayers, selectedPlayer);
-
   useEffect(() => {
     const convertToFullName =
       selectedPlayer === null

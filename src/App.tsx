@@ -22,6 +22,9 @@ const App = () => {
     }
   };
 
+  console.log('playing', isPlaying);
+  console.log('show', showSecret);
+
   const addGuess = (selectedPlayer?: IPlayerData) => {
     selectedPlayer && setGuesses([...guesses, selectedPlayer]);
     correctHooper(selectedPlayer);
@@ -41,6 +44,9 @@ const App = () => {
     const checkPlaying = () => {
       let isActive = guesses.length < 8;
       setIsPlaying(isActive);
+      if (isActive === false) {
+        setShowSecret(true);
+      }
     };
 
     checkPlaying();
