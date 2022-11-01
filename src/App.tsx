@@ -22,21 +22,25 @@ const App = () => {
     }
   };
 
-  console.log('playing', isPlaying);
-  console.log('show', showSecret);
-
   const addGuess = (selectedPlayer?: IPlayerData) => {
     selectedPlayer && setGuesses([...guesses, selectedPlayer]);
     correctHooper(selectedPlayer);
   };
 
+  const getSecretHooper = () => {
+    const randomHooper = pickPlayer(players);
+
+    setSecretHooper(randomHooper);
+  };
+
+  const newGame = () => {
+    setGuesses([]);
+    getSecretHooper();
+    setShowSecret(false);
+    setIsPlaying(true);
+  };
+
   useEffect(() => {
-    const getSecretHooper = () => {
-      const randomHooper = pickPlayer(players);
-
-      setSecretHooper(randomHooper);
-    };
-
     getSecretHooper();
   }, []);
 
@@ -84,8 +88,9 @@ const App = () => {
           <Result
             correct={correctGuess}
             secretHooper={secretHooper}
-            setIsOpen={setShowSecret}
+            setShowSecret={setShowSecret}
             isPlaying={isPlaying}
+            newGame={newGame}
           />
         )}
         {guesses.length > 0 && (

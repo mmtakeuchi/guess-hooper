@@ -105,6 +105,7 @@ export interface IHooperItemProps {
 export interface IResultProps {
   secretHooper: IPlayerData | null;
   correct: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  setShowSecret: (show: boolean) => void;
   isPlaying: boolean;
+  newGame: () => void;
 }

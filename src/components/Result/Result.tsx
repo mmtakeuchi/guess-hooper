@@ -6,28 +6,29 @@ import './Result.scss';
 const Result = ({
   correct,
   secretHooper,
-  setIsOpen,
+  setShowSecret,
   isPlaying,
+  newGame,
 }: IResultProps) => {
   useEffect(() => {
     const closeOnEscapeKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'Escape') {
-        setIsOpen(false);
+        setShowSecret(false);
       }
     };
 
     window.addEventListener('keydown', closeOnEscapeKeyDown);
 
     return () => window.removeEventListener('keydown', closeOnEscapeKeyDown);
-  }, [setIsOpen]);
+  }, [setShowSecret]);
 
   return (
-    <div className="result" onClick={() => setIsOpen(false)}>
+    <div className="result" onClick={() => setShowSecret(false)}>
       <div className="result-box" onClick={(e) => e.stopPropagation()}>
         <button
           className="closeBtn"
           aria-label="close"
-          onClick={() => setIsOpen(false)}
+          onClick={() => setShowSecret(false)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -73,9 +74,16 @@ const Result = ({
           </div>
 
           {!isPlaying && (
-            <div className="result-box-content-timer">
-              <h3>Next hooper in 12:00:00</h3>
-            </div>
+            <>
+              <div className="result-box-content-timer">
+                <h3>Next hooper in 12:00:00</h3>
+              </div>
+              <div>
+                <button className="new-game-btn" onClick={() => newGame()}>
+                  New Game
+                </button>
+              </div>
+            </>
           )}
         </div>
       </div>

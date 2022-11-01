@@ -67,6 +67,20 @@
           font-weight: 600;
         }
       }
+
+      .new-game-btn {
+        cursor: pointer;
+        margin: 1rem 0;
+        border: none;
+        font-size: 1.25rem;
+        font-weight: 600;
+        background-color: rgba(0, 0, 0, 0);
+        color: #3e6d9c;
+      }
+
+      .new-game-btn:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
