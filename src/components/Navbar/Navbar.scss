@@ -1,4 +1,5 @@
 header {
+  width: 100%;
   display: flex;
   align-items: center;
   height: 3rem;
@@ -8,12 +9,25 @@ header {
   font-weight: bold;
 
   h1 {
-    margin: 0 auto;
+    width: calc(100% - 1rem);
+    position: absolute;
+    text-align: center;
   }
 
-  svg {
-    cursor: pointer;
+  .nav-btns {
+    flex: 1;
     display: flex;
     justify-content: flex-end;
+    position: relative;
+
+    & > * {
+      cursor: pointer;
+    }
+
+    .stats-btn {
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      color: #fff;
+    }
   }
 }

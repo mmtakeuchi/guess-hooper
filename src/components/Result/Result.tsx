@@ -57,7 +57,7 @@ const Result = ({
           />
 
           <div className="result-box-content-info">
-            {!isPlaying ? (
+            {!isPlaying || correct ? (
               <>
                 <h3>
                   {correct

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { players } from './data/players';
-import { IPlayerData } from './types/index';
+import { IPlayerData, GameStatsProps } from './types/index';
 import { fullName, pickPlayer, findTeam } from './utils';
+import { setStatsToLocalStorage } from './utils/storage';
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import Footer from './components/Footer/Footer';
 import HooperList from './components/HooperList/HooperList';
@@ -46,9 +47,9 @@ const App = () => {
 
   useEffect(() => {
     const checkPlaying = () => {
-      let isActive = guesses.length < 8;
+      let isActive = guesses.length < 8 && !correctGuess;
       setIsPlaying(isActive);
-      if (isActive === false) {
+      if (isActive === false || correctGuess) {
         setShowSecret(true);
       }
     };
@@ -60,15 +61,6 @@ const App = () => {
     <div className="App">
       <Navbar />
       <main>
-        {correctGuess && (
-          <div>
-            <p>{`You solved it in ${guesses.length} guesses.`}</p>
-            <p>{`Secret player was: ${fullName(
-              secretHooper?.firstName,
-              secretHooper?.lastName
-            )}`}</p>
-          </div>
-        )}
         {isPlaying && (
           <Autocomplete
             guesses={guesses}

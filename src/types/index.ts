@@ -109,3 +109,10 @@ export interface IResultProps {
   isPlaying: boolean;
   newGame: () => void;
 }
+export interface GameStatsProps {
+  gamesPlayed: number;
+  gamesWon: number;
+  currentStreak: number;
+  maxStreak: number;
+  winPercentage: number;
+}
