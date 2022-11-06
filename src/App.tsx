@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { players } from './data/players';
 import { IPlayerData, GameStatsProps } from './types/index';
 import { fullName, pickPlayer, findTeam } from './utils';
-import { setStatsToLocalStorage } from './utils/storage';
+import {
+  addGameStats,
+  loadGameStats,
+  setStatsToLocalStorage,
+} from './utils/storage';
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import Footer from './components/Footer/Footer';
 import HooperList from './components/HooperList/HooperList';
@@ -13,6 +17,13 @@ import './App.css';
 const App = () => {
   const [guesses, setGuesses] = useState<IPlayerData[]>([]);
   const [secretHooper, setSecretHooper] = useState<IPlayerData | null>(null);
+  const [stats, setStats] = useState({
+    gamesPlayed: 0,
+    gamesWon: 0,
+    currentStreak: 0,
+    maxStreak: 0,
+    winPercentage: 0,
+  });
   const [correctGuess, setCorrectGuess] = useState(false);
   const [showSecret, setShowSecret] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -20,6 +31,7 @@ const App = () => {
   const correctHooper = (player?: IPlayerData) => {
     if (player?.personId === secretHooper?.personId) {
       setCorrectGuess(true);
+      addGameStats(stats, true);
     }
   };
 
@@ -30,7 +42,6 @@ const App = () => {
 
   const getSecretHooper = () => {
     const randomHooper = pickPlayer(players);
-
     setSecretHooper(randomHooper);
   };
 
@@ -40,6 +51,15 @@ const App = () => {
     setShowSecret(false);
     setIsPlaying(true);
   };
+
+  useEffect(() => {
+    const getStats = () => {
+      let stats = loadGameStats();
+      setStats(stats);
+    };
+
+    getStats();
+  }, []);
 
   useEffect(() => {
     getSecretHooper();

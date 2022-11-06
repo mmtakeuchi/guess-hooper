@@ -8,10 +8,8 @@ interface Props {
 }
 
 const StatsModal = ({ setIsStatsOpen }: Props) => {
-  const [stats, setStats] = useState<GameStatsProps>(
-    getStatsFromLocalStorage()
-  );
-  console.log('stats', stats);
+  const [stats, setStats] = useState(() => getStatsFromLocalStorage());
+  console.log(stats);
 
   useEffect(() => {
     const closeOnEscapeKeyDown = (e: KeyboardEvent) => {
