@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getStatsFromLocalStorage } from '../../utils/storage';
-import { GameStatsProps } from '../../types';
 import './StatsModal.scss';
 
 interface Props {

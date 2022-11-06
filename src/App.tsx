@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { players } from './data/players';
-import { IPlayerData, GameStatsProps } from './types/index';
-import { fullName, pickPlayer, findTeam } from './utils';
-import {
-  addGameStats,
-  loadGameStats,
-  setStatsToLocalStorage,
-} from './utils/storage';
+import { IPlayerData } from './types/index';
+import { pickPlayer } from './utils';
+import { addGameStats, loadGameStats } from './utils/storage';
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import Footer from './components/Footer/Footer';
 import HooperList from './components/HooperList/HooperList';
