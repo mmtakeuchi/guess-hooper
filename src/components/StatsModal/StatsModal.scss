@@ -1,4 +1,4 @@
-.modal {
+.stats-modal {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -35,36 +35,37 @@
     }
 
     &-content {
-      display: flex;
-      flex-direction: column;
-
       h2 {
         margin-bottom: 0;
+        text-align: center;
       }
 
       h3 {
         margin: 0;
       }
 
-      ul {
-        padding-inline-start: 20px;
-        margin: 20px 0;
-      }
+      .stats-container {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+        margin: 0 auto;
+        width: 75%;
 
-      li {
-        margin-bottom: 10px;
-      }
+        &-item {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          align-items: center;
+          max-height: 100%;
+          overflow-y: auto;
 
-      span {
-        padding: 2px 4px;
+          &_stat {
+            font-size: 1.5rem;
+          }
 
-        &.green {
-          background-color: #228b22;
-          color: #fff;
-        }
-
-        &.yellow {
-          background-color: #f1c40f;
+          &_name {
+            text-align: center;
+          }
         }
       }
     }

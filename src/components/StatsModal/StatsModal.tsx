@@ -24,8 +24,8 @@ const StatsModal = ({ setIsStatsOpen }: Props) => {
   }, [setIsStatsOpen]);
 
   return (
-    <div className="modal" onClick={() => setIsStatsOpen(false)}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+    <div className="stats-modal" onClick={() => setIsStatsOpen(false)}>
+      <div className="stats-modal-box" onClick={(e) => e.stopPropagation()}>
         <button
           className="closeBtn"
           aria-label="close"
@@ -48,8 +48,26 @@ const StatsModal = ({ setIsStatsOpen }: Props) => {
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <div className="modal-box-content">
+        <div className="stats-modal-box-content">
           <h2>Stats</h2>
+          <div className="stats-container">
+            <div className="stats-container-item">
+              <p className="stats-container-item_stat">{stats.gamesPlayed}</p>
+              <p className="stats-container-item_name">Played</p>
+            </div>
+            <div className="stats-container-item">
+              <p className="stats-container-item_stat">{stats.winPercentage}</p>
+              <p className="stats-container-item_name">Win %</p>
+            </div>
+            <div className="stats-container-item">
+              <p className="stats-container-item_stat">{stats.currentStreak}</p>
+              <p className="stats-container-item_name">Current Streak</p>
+            </div>
+            <div className="stats-container-item">
+              <p className="stats-container-item_stat">{stats.maxStreak}</p>
+              <p className="stats-container-item_name">Max Streak</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
