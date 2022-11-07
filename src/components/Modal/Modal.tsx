@@ -66,7 +66,6 @@ const Modal = ({ setIsOpen }: Props) => {
               the mystery player
             </li>
           </ul>
-          <p>A new player is released every day.</p>
         </div>
       </div>
     </div>
