@@ -44,6 +44,7 @@ const App = () => {
   const newGame = () => {
     setGuesses([]);
     getSecretHooper();
+    setCorrectGuess(false);
     setShowSecret(false);
     setIsPlaying(true);
   };
@@ -65,6 +66,9 @@ const App = () => {
     const checkPlaying = () => {
       let isActive = guesses.length < 8 && !correctGuess;
       setIsPlaying(isActive);
+      if (isActive === false && !correctGuess) {
+        addGameStats(stats, false);
+      }
       if (isActive === false || correctGuess) {
         setShowSecret(true);
       }

@@ -31,6 +31,8 @@ export const addGameStats = (stats: GameStatsProps, win: boolean) => {
     if (stats.currentStreak > stats.maxStreak) {
       stats.maxStreak = stats.currentStreak;
     }
+  } else {
+    stats.currentStreak = 0;
   }
 
   stats.winPercentage = Math.round(
