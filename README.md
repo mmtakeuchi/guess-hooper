@@ -17,3 +17,7 @@ Guessed Player with clues about if info matches or closely matches mystery playe
 
 End Game Modal. Shows results of game with image of the mystery player.
 <img src="./public/assets/Screenshot 2022-11-07 at 4.25.02 PM.png" width=1000 ><br/>
+
+## License
+
+[MIT](LICENSE)
