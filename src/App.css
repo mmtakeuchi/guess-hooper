@@ -29,6 +29,12 @@ main {
   text-decoration: underline;
 }
 
+@media screen and (max-width: 1000px) {
+  main {
+    padding: 2rem;
+  }
+}
+
 @media screen and (max-width: 500px) {
   main {
     padding: 1rem;

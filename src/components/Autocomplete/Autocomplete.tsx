@@ -3,7 +3,6 @@ import SearchInput from '../SearchInput/SearchInput';
 import { IPlayerData, IAutocompleteProps } from '../../types';
 
 import './Autocomplete.scss';
-import { act } from 'react-dom/test-utils';
 
 const Autocomplete = ({
   guesses,

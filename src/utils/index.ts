@@ -174,3 +174,20 @@ export const comparePos = (guessPos: string, secretPos: string | undefined) => {
     return '';
   }
 };
+
+export const abbreviateDivision = (division: string) => {
+  const divisions = {
+    Pacific: 'PAC',
+    Southeast: 'SE',
+    Southwest: 'SW',
+    Atlantic: 'ATL',
+    Central: 'CEN',
+    Northwest: 'NW',
+  };
+
+  type ObjectKey = keyof typeof divisions;
+
+  const myVar = 'name' as ObjectKey;
+
+  return divisions[myVar];
+};

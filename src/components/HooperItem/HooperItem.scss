@@ -3,6 +3,17 @@
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   border-bottom: 1px solid black;
 
+  @media screen and (max-width: 500px) {
+    display: grid;
+    grid-template-area:
+      'name'
+      'info';
+
+    .hooper-item-name {
+      grid-area: name;
+    }
+  }
+
   div {
     height: 100%;
     max-width: 100%;
