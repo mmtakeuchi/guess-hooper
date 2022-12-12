@@ -9,7 +9,6 @@ input {
 
 @media screen and (max-width: 768px) {
   input {
-    width: calc(100% - 2rem);
     padding: 0.75rem;
     font-size: 1.15rem;
   }
@@ -17,7 +16,6 @@ input {
 
 @media screen and (max-width: 375px) {
   input {
-    width: calc(100% - 3rem);
     padding: 0.5rem;
     font-size: 1rem;
   }
