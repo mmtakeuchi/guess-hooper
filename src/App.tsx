@@ -8,9 +8,11 @@ import Footer from './components/Footer/Footer';
 import HooperList from './components/HooperList/HooperList';
 import Navbar from './components/Navbar/Navbar';
 import Result from './components/Result/Result';
+import useWindowSize from './hooks/useWindowSize';
 import './App.css';
 
 const App = () => {
+  console.log(useWindowSize());
   const [guesses, setGuesses] = useState<IPlayerData[]>([]);
   const [secretHooper, setSecretHooper] = useState<IPlayerData | null>(null);
   const [stats, setStats] = useState({

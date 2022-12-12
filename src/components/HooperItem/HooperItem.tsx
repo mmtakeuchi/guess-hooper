@@ -11,9 +11,11 @@ import {
   compareTeams,
   comparePos,
 } from '../../utils';
+import useWindowSize from '../../hooks/useWindowSize';
 import './HooperItem.scss';
 
 const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
+  console.log(useWindowSize);
   return (
     <tr className="hooper-item">
       <td>
