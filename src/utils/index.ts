@@ -175,7 +175,7 @@ export const comparePos = (guessPos: string, secretPos: string | undefined) => {
   }
 };
 
-export const abbreviateDivision = (division: string) => {
+export const abbreviateDivision = (division: string | undefined) => {
   const divisions = {
     Pacific: 'PAC',
     Southeast: 'SE',
@@ -187,7 +187,7 @@ export const abbreviateDivision = (division: string) => {
 
   type ObjectKey = keyof typeof divisions;
 
-  const myVar = 'name' as ObjectKey;
+  const myVar = `${division}` as ObjectKey;
 
   return divisions[myVar];
 };

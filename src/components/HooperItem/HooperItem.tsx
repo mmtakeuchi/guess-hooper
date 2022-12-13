@@ -10,12 +10,14 @@ import {
   compareHeights,
   compareTeams,
   comparePos,
+  abbreviateDivision,
 } from '../../utils';
 import useWindowSize from '../../hooks/useWindowSize';
 import './HooperItem.scss';
 
 const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
-  console.log(useWindowSize);
+  const { innerWidth } = useWindowSize();
+
   return (
     <tr className="hooper-item">
       <td>
@@ -59,7 +61,9 @@ const HooperItem = ({ hooper, secretHooper }: IHooperItemProps) => {
             findTeam(secretHooper?.teamId)?.division
           )}`}
         >
-          {findTeam(hooper.teamId)?.division}
+          {innerWidth <= 768
+            ? abbreviateDivision(findTeam(hooper.teamId)?.division)
+            : findTeam(hooper.teamId)?.division}
         </div>
       </td>
       <td>
